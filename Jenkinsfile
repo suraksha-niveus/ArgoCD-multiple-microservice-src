@@ -62,7 +62,7 @@ node {
     stage('Clone repository') {
         script{
         
-                 git credentialsId: 'github', url: 'https://github.com/suraksha-niveus/mutiple-service-chart.git'
+                 git credentialsId: 'github', url: 'https://github.com/suraksha-niveus/multiple-services-chart.git'
       
         }
     }
@@ -79,7 +79,7 @@ node {
                         sh "cat MS/values.yaml"
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
-                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/mutiple-service-chart.git HEAD:master"
+                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/multiple-services-chart.git HEAD:master"
       }
     }
   }
