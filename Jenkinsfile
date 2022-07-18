@@ -8,6 +8,8 @@ node {
       checkout scm
     }
     
+    
+    
     // for php
     
     stage('Build image') {
