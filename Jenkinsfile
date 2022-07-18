@@ -10,7 +10,6 @@ node {
     
     // for php
     
-    
     stage('Build image') {
         dir('php01'){
        app = docker.build("surakshaniveus/ms-php01")
