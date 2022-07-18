@@ -10,7 +10,7 @@ node {
     
     
     
-    // for php
+    // for php code
     
     stage('Build image') {
         dir('php01'){
