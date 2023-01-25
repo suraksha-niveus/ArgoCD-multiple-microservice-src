@@ -12,5 +12,10 @@ app.get('/', (req, res) => {
   res.send('CICD using argocd and helm ');
 });
 
+
+app.get('/error', function (req, res) {
+  throw new Error('BROKEN') // Express will catch this on its own.
+})
+
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
