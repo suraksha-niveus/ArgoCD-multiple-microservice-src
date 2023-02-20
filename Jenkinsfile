@@ -38,7 +38,21 @@ node {
         }
     }
     
+        
     
+    // // for node
+
+    // stage('Build image') {
+    //      dir('node01'){
+    //    app = docker.build("surakshaniveus/ms-node01")
+    // }
+    // }
+    // stage('Push image') {
+        
+    //     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+    //         app.push("${env.BUILD_NUMBER}")
+    //     }
+    // }
   
   
     
