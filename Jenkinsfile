@@ -66,8 +66,63 @@ node {
   }
 }
 
+//working one/////////////////////////////////////////////////////
+
+// def microservices = ['php01', 'node01']
+// def DOCKER_REGISTRY = 'my-registry.com'
+
+// pipeline {
+//     agent any
+    
+//     options {
+//         skipDefaultCheckout true
+//     }
+    
+//     stages {
+//         stage('Checkout') {
+//             steps {
+//                 git credentialsId: 'github', url: 'https://github.com/suraksha-niveus/ArgoCD-multiple-microservice-src.git'
+//             }
+//         }
+        
+//         stage('Build and push images') {
+//             when {
+//                 changeset "*/master"
+//             }
+//             steps {
+//                 script {
+//                     for (def microservice : microservices) {
+//                         def image_name = "surakshaniveus/ms-${microservice}:${BUILD_NUMBER}"
+//                         def dockerfile_path = "/path/to/${microservice}/Dockerfile"
+//                         def build_args = ["MICROSERVICE=${microservice}"]
+//                         def changes = git(
+//                             branch: 'master', 
+//                             credentialsId: 'github', 
+//                             url: 'https://github.com/suraksha-niveus/ArgoCD-multiple-microservice-src.git', 
+//                             changelog: true
+//                         )
+
+//                         if (changes) {
+//                             def image = docker.build(image_name, "-f ${dockerfile_path} ${build_args.join(" ")} .")
+//                             docker.withRegistry(DOCKER_REGISTRY, "docker") {
+//                                 image.push()
+//                             }
+//                         }   
+//                     }
+//                 }
+//             }
+//         }
+//     }
+    
+//     post {
+//         always {
+//             deleteDir()
+//         }
+//     }
+// }
 
 
+///////////////////////////////////////////////////////////////
 //or
 
 // pipeline {
