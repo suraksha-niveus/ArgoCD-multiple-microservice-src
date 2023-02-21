@@ -68,6 +68,75 @@ node {
 
 
 
+//or
+
+// pipeline {
+//   agent any
+  
+//   environment {
+//     DOCKER_REGISTRY = "registry.hub.docker.com"
+//     GIT_REPO = "https://github.com/suraksha-niveus/CICD-argoCD.git"
+//     GIT_CREDS = credentials('github')
+//   }
+  
+//   stages {
+//     stage('Clone repo') {
+//       steps {
+//         checkout([
+//           $class: 'GitSCM',
+//           branches: [[name: 'master']],
+//           userRemoteConfigs: [[credentialsId: GIT_CREDS, url: 'https://github.com/suraksha-niveus/ArgoCD-multiple-microservice-src.git']]
+//         ])
+//       }
+//     }
+    
+//     stage('Build and push images') {
+//       steps {
+//         script {
+//           def microservices = ['php01', 'node01']
+//           for (def microservice : microservices) {
+//             def image_name = "surakshaniveus/ms-${microservice}:${BUILD_NUMBER}"
+//             def dockerfile_path = "/path/to/${microservice}/Dockerfile"
+//             def build_args = ["MICROSERVICE=${microservice}"]
+//             def changes = scm.poll([dockerfile_path], 1)
+
+//             if (changes) {
+//               def image = docker.build(image_name, "-f ${dockerfile_path} ${build_args.join(' ')} .")
+//               docker.withRegistry(DOCKER_REGISTRY, 'docker') {
+//                 image.push()
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+    
+//     stage('Update deployment repo') {
+//       steps {
+//         script {
+//           def values_yaml = "values-dev.yaml"
+//           def image_tag = "${BUILD_NUMBER}"
+//           def git_creds = GIT_CREDS.usernamePassword
+
+//           withCredentials([gitUsernamePassword(credentialsId: GIT_CREDS)]) {
+//             checkout([
+//               $class: 'GitSCM',
+//               branches: [[name: 'main']],
+//               userRemoteConfigs: [[credentialsId: GIT_CREDS, url: GIT_REPO]]
+//             ])
+
+//             sh "sed -i 's/tag:.*/tag: ${image_tag}/' ${values_yaml}"
+//             sh "git add ${values_yaml}"
+//             sh "git commit -m 'Update image tag to ${image_tag}'"
+//             sh "git push ${git_creds}@${GIT_REPO} main"
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+
 
 
 
