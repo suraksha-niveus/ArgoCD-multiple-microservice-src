@@ -18,7 +18,8 @@ pipeline {
                             def microservice = microservices[i]
     
                             // Check for changes in the microservice directory
-                            def changes = scm.poll(["ArgoCD-multiple-microservice-src/${microservice}"], 1)
+                            def changes = scm.poll("ArgoCD-multiple-microservice-src/${microservice}", 1)
+
     
                             // Only build and push image if there are changes in the microservice directory
                             if (changes) {
