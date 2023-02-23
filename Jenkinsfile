@@ -47,7 +47,7 @@ pipeline {
                 }
             }
     
-            // Update image tag in deployment repo
+            //// Update image tag in deployment repo
             stage('Update GIT') {
                 steps {
                     script {
